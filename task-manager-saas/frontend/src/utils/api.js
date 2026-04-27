@@ -1,4 +1,4 @@
-const API = "http://localhost:5001/api";
+const API = "https://management-saas-tasks.onrender.com";
 
 export const getToken = () => localStorage.getItem("token");
 
