@@ -4,6 +4,7 @@ import TaskForm from "../components/TaskForm";
 import TaskList from "../components/TaskList";
 import { useNavigate } from "react-router-dom";
 
+
 export default function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const [editing, setEditing] = useState(null);
@@ -32,13 +33,16 @@ export default function Dashboard() {
     setLoading(false);
   };
 
-  useEffect(() => {
-    if (!getToken()) {
-      navigate("/login");
-    } else {
-      fetchTasks();
-    }
-  }, []);
+
+useEffect(() => {
+  const token = getToken();
+
+  if (!token) {
+    navigate("/login");
+  } else {
+    fetchTasks();
+  }
+}, []); //
 
   const addTask = async (form) => {
     const cleanForm = {

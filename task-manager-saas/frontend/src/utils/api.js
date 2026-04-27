@@ -1,4 +1,5 @@
 const API = "https://management-saas-tasks.onrender.com/api";
+
 export const getToken = () => localStorage.getItem("token");
 
 export const setToken = (token) => {

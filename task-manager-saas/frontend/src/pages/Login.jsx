@@ -7,23 +7,25 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const res = await fetch(`${API}/auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+  const res = await fetch(`${API}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(form),
+  });
 
-    const data = await res.json();
+  const data = await res.json();
 
-    if (data.token) {
-      setToken(data.token);
-      navigate("/");
-    } else {
-      alert(data.message);
-    }
-  };
+  if (data.token) {
+    setToken(data.token);
+
+    // 🔥 FORCE RELOAD (IMPORTANT FIX)
+    window.location.href = "/";
+  } else {
+    alert(data.message);
+  }
+};
 
   return (
   <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200">
